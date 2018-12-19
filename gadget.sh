@@ -14,14 +14,16 @@ OS=`cat /home/pi/os.txt`
 HOST="48:6f:73:74:50:43"
 SELF0="42:61:64:55:53:42"
 SELF1="42:61:64:55:53:43"
+SERIALNMBR=$(cat /proc/cpuinfo | grep ^Serial | cut -d":" -f2)
 
 echo 0x04b3 > idVendor
 echo 0x4010 > idProduct
 
 echo 0x0100 > bcdDevice # v1.0.0
 mkdir -p strings/0x409
-echo "badc0deddeadbeef" > strings/0x409/serialnumber
-echo "wismna" > strings/0x409/manufacturer
+
+echo $SERIALNMBR > strings/0x409/serialnumber
+echo "m42e" > strings/0x409/manufacturer
 echo "PiZero" > strings/0x409/product
 
 if [ "$OS" != "MacOs" ]; then

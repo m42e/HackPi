@@ -14,8 +14,6 @@ MODULE_INSTALLED=false
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 sudo apt-get install -y isc-dhcp-server dsniff screen nodejs bridge-utils git
-sudo git clone https://github.com/samyk/poisontap ~/poisontap
-sudo git clone https://github.com/lgandx/Responder ~/Responder
 
 printf "\nInstalling..."
 printf "\nBackup files? [y/n] "
@@ -63,26 +61,6 @@ fi
 
 if [ "$MODULE_INSTALLED" = true ] ; 
 then
-	# Server configuration
-	printf "\nConfigure backdoor usage? [y/n] "
-	read server
-	if [[ $server == y* ]] ;
-	then
-		printf "IP address of server which is running the backend_server.js: "
-		read ip
-		sudo sed -i -e 's/YOUR.DOMAIN/'$ip'/g' ~/poisontap/target_backdoor.js
-		sudo sed -i -e 's/YOUR.DOMAIN/'$ip'/g' ~/poisontap/backdoor.html
-
-		printf "And the port: "
-		read port
-		if [ $port != "1337" ] ;
-		then
-			sudo sed -i -e 's/1337/'$port'/g' ~/HackPi/interfaces
-			sudo sed -i -e 's/1337/'$port'/g' ~/HackPi/rc.local
-			sudo sed -i -e 's/1337/'$port'/g' ~/poisontap/pi_poisontap.js
-			sudo sed -i -e 's/1337/'$port'/g' ~/poisontap/backdoor.html
-		fi
-	fi
 
    	# Install and setup files
 	sudo cp -f ~/HackPi/config.txt /boot/
