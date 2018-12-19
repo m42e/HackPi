@@ -69,7 +69,7 @@ then
 	sudo chmod +x /etc/rc.local
 	sudo cp -f ~/HackPi/isc-dhcp-server /etc/default/
 	sudo cp -f ~/HackPi/dhcpd.conf /etc/dhcp/
-	sudo cp -f ~/HackPi/interfaces /etc/network/
+	sudo cp -f ~/HackPi/bridge.conf /etc/network/interfaces.d/
 	sudo chmod +x ~/HackPi/gadget.sh
 	sudo chmod +x ~/HackPi/fingerprint.sh
 	printf "\nDone.\nYou can now reboot the device.\n"
